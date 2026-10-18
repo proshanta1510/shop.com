@@ -1,6 +1,6 @@
 # দুর্গাপুর এন্টারপ্রাইজ — দোকান ম্যানেজমেন্ট
 
-তিনটি ফাইল: `index.html` (পেজ), `style.css` (ডিজাইন), `app.js` (সব লজিক)।
+তিনটি ফাইল: `index.html` (পেজ), `style.css` (ডিজাইন), `app.js` (সব লজিক)। 
 
 ## GitHub Pages এ চালু করার ধাপ
 1. github.com এ লগইন → **New repository** → নাম দিন (যেমন `dokan`) → **Public** → **Create**।
