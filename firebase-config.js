@@ -1,9 +1,9 @@
-const firebaseConfig = {
-  apiKey: "AIzaSy...",
-  authDomain: "durgapur-enterprise.firebaseapp.com",
-  databaseURL: "https://durgapur-enterprise-default-rtdb.firebaseio.com",
-  projectId: "durgapur-enterprise",
-  storageBucket: "durgapur-enterprise.appspot.com",
-  messagingSenderId: "1234567890",
-  appId: "1:1234567890:web:abcdef..."
+/* Firebase কনসোল → Project settings → Your apps → Web app থেকে এই মানগুলো কপি করে বসান।
+   সব ফাঁকা থাকলে অ্যাপ আগের মতো শুধু ওই ব্রাউজারে চলবে (সিঙ্ক বন্ধ)। */
+window.FB_CONFIG = {
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",   // যেমন: https://আপনার-প্রজেক্ট-default-rtdb.asia-southeast1.firebasedatabase.app
+  projectId: "",
+  appId: ""
 };
