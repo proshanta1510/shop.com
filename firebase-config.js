@@ -1,16 +1,9 @@
-// firebase-config.js
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
-  projectId: "YOUR_PROJECT",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSy...",
+  authDomain: "durgapur-enterprise.firebaseapp.com",
+  databaseURL: "https://durgapur-enterprise-default-rtdb.firebaseio.com",
+  projectId: "durgapur-enterprise",
+  storageBucket: "durgapur-enterprise.appspot.com",
+  messagingSenderId: "1234567890",
+  appId: "1:1234567890:web:abcdef..."
 };
-
-// Initialize Firebase
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
-const db = firebase.database();
