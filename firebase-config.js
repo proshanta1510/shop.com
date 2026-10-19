@@ -1,9 +1,16 @@
-/* Firebase কনসোল → Project settings → Your apps → Web app থেকে এই মানগুলো কপি করে বসান।
-   সব ফাঁকা থাকলে অ্যাপ আগের মতো শুধু ওই ব্রাউজারে চলবে (সিঙ্ক বন্ধ)। */
-window.FB_CONFIG = {
-  apiKey: "",
-  authDomain: "",
-  databaseURL: "",   // যেমন: https://আপনার-প্রজেক্ট-default-rtdb.asia-southeast1.firebasedatabase.app
-  projectId: "",
-  appId: ""
+// firebase-config.js
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+  projectId: "YOUR_PROJECT",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
+
+// Initialize Firebase
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+const db = firebase.database();
