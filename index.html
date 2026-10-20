@@ -16,4 +16,7 @@
 <script src="firebase-config.js"></script>
 <script src="firebase-sync.js"></script>
 <script src="app.js"></script>
+<noscript><div style="padding:10px;background:#dc2626;color:#fff;text-align:center">এই অ্যাপ চালাতে ব্রাউজারে JavaScript চালু থাকতে হবে।</div></noscript>
+<div id="boot" style="display:none;position:fixed;left:0;right:0;top:0;background:#dc2626;color:#fff;padding:10px;text-align:center;z-index:99">⚠ অ্যাপ ঠিকমতো লোড হয়নি। <a href="check.html" style="color:#fff;font-weight:700">check.html</a> খুলে কারণ দেখুন (ফাইলগুলো একই ফোল্ডারে আছে কি, Ctrl+Shift+R)।</div>
+<script>setTimeout(function(){if(typeof login!=='function'||!document.getElementById('lg'))document.getElementById('boot').style.display='block'},2500)</script>
 </body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>সংযোগ পরীক্ষা</title>
+<style>body{font-family:system-ui,'Hind Siliguri',sans-serif;max-width:760px;margin:0 auto;padding:14px;line-height:1.55;color:#0f172a}h1{font-size:20px}.ok{color:#15803d}.bad{color:#dc2626}.box{border:1px solid #cbd5e1;border-radius:10px;padding:10px;margin:10px 0}small{color:#475569}code{background:#f1f5f9;padding:1px 5px;border-radius:4px}a{color:#0f766e}</style></head><body>
+<h1>🔍 দোকান অ্যাপ — চালু না হলে এখানে দেখুন</h1>
+<div class="box" id="o">পরীক্ষা চলছে…</div>
+<div class="box"><b>সাধারণ সমস্যা ও সমাধান</b><ul>
+<li><b>পেজ খুলছেই না (404):</b> Settings → Pages এ Source = <code>main</code> / <code>(root)</code> কি না দেখুন। Free GitHub অ্যাকাউন্টে রিপো <b>Public</b> হতে হবে। ১-২ মিনিট অপেক্ষা করুন।</li>
+<li><b>পেজ খুলছে কিন্তু সাদা/ডিজাইন নেই:</b> <code>index.html</code>, <code>style.css</code>, <code>app.js</code> সব ফাইল একই ফোল্ডারে (রিপোর ভেতরে সরাসরি) থাকতে হবে, কোনো সাব-ফোল্ডারে নয়। ফাইলের নাম হুবহু (ছোট হাতের) হতে হবে।</li>
+<li><b>পুরনো ভার্সন দেখাচ্ছে:</b> <code>Ctrl + Shift + R</code> (মোবাইলে ব্রাউজারের ক্যাশ/ডাটা মুছুন)।</li>
+<li><b>এক ডিভাইসের ডাটা অন্যটায় আসছে না:</b> Firebase সেটআপ করা না থাকলে ডাটা শুধু ওই ডিভাইসের ব্রাউজারে থাকে। অ্যাপের লগইন পেজের <b>☁ ক্লাউড সেটআপ</b> বোতামে ধাপগুলো করুন, <b>প্রতিটি ডিভাইসে</b> একই ইমেইলে লগইন করুন।</li></ul></div>
+<p><a href="index.html">← অ্যাপে ফিরুন</a></p>
+<script>
+var R=[],files=['index.html','style.css','app.js','firebase-config.js','firebase-sync.js'];
+function add(ok,t,h){R.push('<div class="'+(ok?'ok':'bad')+'">'+(ok?'✅ ':'❌ ')+t+(!ok&&h?'<br><small>→ '+h+'</small>':'')+'</div>')}
+function show(){document.getElementById('o').innerHTML=R.join('')}
+add(location.protocol!=='file:','পেজ ওয়েব লিংক থেকে খোলা ('+location.href.replace(/[?#].*/,'')+')','ফাইল সরাসরি (file://) খুললে Firebase কাজ করে না। GitHub Pages এর লিংক খুলুন');
+var p=Promise.resolve();
+files.forEach(function(f){p=p.then(function(){return fetch(f+'?t='+Date.now(),{cache:'no-store'}).then(function(r){add(r.ok,f+' পাওয়া গেছে ('+r.status+')','এই ফাইল রিপোর মূল ফোল্ডারে আপলোড করুন')},function(){add(false,f+' লোড হয়নি','ফাইল আপলোড/নাম/ইন্টারনেট চেক করুন')})})});
+p.then(function(){return new Promise(function(res){var s=document.createElement('script');s.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js';s.onload=function(){add(true,'Firebase লাইব্রেরি (gstatic) লোড হয়েছে');res()};s.onerror=function(){add(false,'Firebase লাইব্রেরি লোড হয়নি','ইন্টারনেট/অ্যাডব্লকার/VPN চেক করুন');res()};document.head.appendChild(s)})})
+.then(function(){return new Promise(function(res){var s=document.createElement('script');s.src='firebase-config.js?t='+Date.now();s.onload=function(){var C=window.FB_CONFIG||{},L={};try{L=JSON.parse(localStorage.getItem('fb_cfg')||'{}')}catch(e){}var ok=(C.apiKey&&C.databaseURL)||(L.apiKey&&L.databaseURL);add(!!ok,'Firebase কনফিগ বসানো আছে'+((C.apiKey&&C.databaseURL)?' (firebase-config.js এ)':(L.apiKey?' (শুধু এই ব্রাউজারে)':'')),'অ্যাপের লগইন পেজে ☁ ক্লাউড সেটআপ চাপুন, অথবা firebase-config.js এ মান বসিয়ে আপলোড করুন');res()};s.onerror=function(){add(false,'firebase-config.js লোড হয়নি','ফাইলটি আপলোড করুন');res()};document.head.appendChild(s)})})
+.then(function(){add(true,'পরীক্ষা শেষ। ❌ থাকলে ওই লাইনের নিচের পরামর্শ দেখুন।');show()});
+</script></body></html>

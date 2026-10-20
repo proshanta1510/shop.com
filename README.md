@@ -1,39 +1,53 @@
 # দুর্গাপুর এন্টারপ্রাইজ — দোকান ম্যানেজমেন্ট
 
-ফাইল: `index.html` (পেজ) · `style.css` (ডিজাইন) · `app.js` (সব লজিক) · `firebase-config.js` (আপনার Firebase তথ্য) · `firebase-sync.js` (Firebase সংযোগ) · `database.rules.json` (সিকিউরিটি রুলস)
+ফাইল (সব **একই ফোল্ডারে**, রিপোর মূলে): `index.html` · `style.css` · `app.js` · `firebase-config.js` · `firebase-sync.js` · `check.html` · `database.rules.json`
 
-## ক) GitHub Pages এ চালু করা
-1. GitHub এ **New repository** (Public) → **Add file → Upload files** → সব ফাইল আপলোড → **Commit**।
-2. **Settings → Pages** → *Deploy from a branch* → `main` / `(root)` → **Save**।
-3. লিংক: `https://ইউজারনেম.github.io/রিপো-নাম/`
+## ১) GitHub Pages এ চালু করা
+1. github.com → **New repository** → নাম দিন → **Public** → Create।
+2. **Add file → Upload files** → সব ফাইল (ফোল্ডার নয়, ফাইলগুলো) টেনে ছাড়ুন → **Commit changes**।
+3. **Settings → Pages** → Source: **Deploy from a branch** → Branch: **main**, Folder: **/ (root)** → **Save**।
+4. ১–২ মিনিট পর লিংক: `https://ইউজারনেম.github.io/রিপো-নাম/`
+5. না চললে: `…/রিপো-নাম/check.html` খুলুন — কোন ফাইল/ধাপে সমস্যা তা ✅/❌ দিয়ে দেখাবে।
 
-> `firebase-config.js` ফাঁকা থাকলে অ্যাপ লোকাল মোডে চলে (ডাটা শুধু ওই ব্রাউজারে)।
+## ২) সব ডিভাইসে একই ডাটা (Firebase) — অ্যাপের ভেতর থেকেই
+Firebase ছাড়া ডাটা শুধু **ওই ব্রাউজারে** থাকে, তাই এক ডিভাইসে লিখলে অন্যটায় আসে না। ঠিক করতে:
 
-## খ) Firebase Realtime Database সংযোগ (সব ডিভাইসে একই ডাটা)
-1. **console.firebase.google.com** → **Add project** (Analytics বন্ধ রাখতে পারেন)।
-2. **Build → Realtime Database → Create database** → Location: **Singapore (asia-southeast1)** → *Start in locked mode*।
-3. **Build → Authentication → Get started → Sign-in method**:
-   - **Email/Password** → Enable
-   - **Anonymous** → Enable (গ্রাহকের অনলাইন অর্ডারের জন্য)
-4. **Authentication → Users → Add user**: স্টাফ/মালিকের ইমেইল ও পাসওয়ার্ড বানান (যত ডিভাইস/স্টাফ, চাইলে একই অ্যাকাউন্টও চলবে)।
-5. **Realtime Database → Rules** ট্যাবে `database.rules.json` এর পুরো লেখা পেস্ট করে **Publish**।
-6. **Project settings (⚙) → General → Your apps → `</>` (Web)** → অ্যাপ রেজিস্টার করুন → যে `firebaseConfig` দেখাবে তার `apiKey, authDomain, databaseURL, projectId, appId` কপি করে **`firebase-config.js`** এ বসান। (`databaseURL` Realtime Database পেজের উপরে লেখা থাকে।)
-7. **Authentication → Settings → Authorized domains** এ `ইউজারনেম.github.io` যোগ করুন।
-8. আপডেট করা ফাইল GitHub এ আবার আপলোড করুন।
+**Firebase Console এ (একবার):**
+1. console.firebase.google.com → **Add project**।
+2. **Build → Realtime Database → Create database** → Singapore → *locked mode*।
+3. **Build → Authentication → Sign-in method** → **Email/Password** Enable, **Anonymous** Enable।
+4. **Project settings (⚙) → Your apps → Web (`</>`)** → রেজিস্টার → `firebaseConfig` দেখাবে (এটা কপি করুন)।
+5. **Authentication → Settings → Authorized domains** → `ইউজারনেম.github.io` যোগ করুন।
 
-### প্রথমবার ব্যবহার
-- অ্যাপ খুলে উপরের বারে **☁ ক্লাউড লগইন** চাপুন → ধাপ ৪ এর ইমেইল/পাসওয়ার্ড দিন (প্রতি ডিভাইসে একবার)।
-- তারপর অ্যাপের নিজের লগইন (`admin / admin123`)।
-- স্ট্যাটাসে **☁ সিঙ্ক চালু** দেখালে হয়ে গেছে। **প্রথম ডিভাইসের পুরনো ডাটা নিজে ক্লাউডে উঠে যাবে**, তাই আগে **সেটিংস → ব্যাকআপ** নিয়ে রাখুন।
-- অন্য ডিভাইসে একই লিংক খুলে একই ধাপ করলে সেখানে সব ডাটা নেমে আসবে।
+**অ্যাপে (প্রতিটি ডিভাইসে):**
+1. লগইন পেজের **☁ ক্লাউড সেটআপ / সংযোগ পরীক্ষা** বোতাম চাপুন।
+2. **ধাপ ১:** কপি করা `firebaseConfig` পেস্ট → *কনফিগ সেভ করুন*। (পেজ রিলোড হবে।)
+3. আবার ঐ বোতাম → **ধাপ ২:** ইমেইল+পাসওয়ার্ড দিয়ে **নতুন অ্যাকাউন্ট তৈরি** (প্রথমবার), পরের ডিভাইসে **লগইন** (একই ইমেইল)।
+4. **ধাপ ৩:** নিচে যে Rules লেখা আসবে (আপনার ইমেইলসহ) সেটা Firebase → Realtime Database → **Rules** এ পেস্ট করে **Publish** করুন। (একাধিক স্টাফ হলে `|| auth.token.email == '...'` যোগ করুন।)
+5. **ধাপ ৪:** *সংযোগ পরীক্ষা করুন* → সব ✅ হলে হয়ে গেছে। উপরে **☁ সিঙ্ক চালু** দেখাবে।
+6. অ্যাপের নিজের লগইন (`admin / admin123`) দিয়ে ঢুকুন।
+
+> সব ডিভাইসে বারবার কনফিগ পেস্ট এড়াতে: সেভ করার পর স্ক্রিনে যে `window.FB_CONFIG = {...}` লেখা আসে সেটা `firebase-config.js` ফাইলে বসিয়ে GitHub এ আপলোড করুন।
+
+### প্রথমবারের সতর্কতা
+- যে ডিভাইসে আগে থেকে ডাটা আছে সেটা প্রথমে সিঙ্ক করুন (ডাটা ক্লাউডে উঠে যাবে), **আগে সেটিংস → ব্যাকআপ নিয়ে রাখুন**।
+- অন্য ডিভাইসে নতুন ও ফাঁকা থেকে শুরু করলে সেখানে সব ডাটা নেমে আসবে।
 
 ### গ্রাহকের অনলাইন অর্ডার
-- গ্রাহক `…/index.html#order` লিংকে ঢুকে পণ্য বেছে অর্ডার দিলে তা সরাসরি Firebase এ যায় এবং অ্যাডমিন প্যানেলের **অনলাইন অর্ডার** এ নিজে চলে আসে।
-- গ্রাহক শুধু পণ্যের তালিকা (catalog) পড়তে ও নিজের অর্ডার লিখতে পারে, দোকানের কোনো হিসাব দেখতে বা বদলাতে পারে না।
+গ্রাহক `…/index.html#order` লিংকে অর্ডার দিলে তা সরাসরি Firebase এ গিয়ে অ্যাডমিনের **অনলাইন অর্ডার** এ আসে। গ্রাহক শুধু পণ্যের তালিকা পড়তে ও নিজের অর্ডার লিখতে পারে।
+
+## সাধারণ সমস্যা
+| সমস্যা | সমাধান |
+|---|---|
+| পেজ 404 | Pages চালু আছে কি (Settings → Pages)? রিপো Public? ১–২ মিনিট অপেক্ষা |
+| সাদা পেজ/ডিজাইন নেই | ফাইলগুলো একই ফোল্ডারে? নাম হুবহু ছোট হাতের? `Ctrl+Shift+R` |
+| "PERMISSION_DENIED" | ধাপ ৩ এর Rules এ নিজের ইমেইল ঠিক লিখে **Publish** করেছেন কি? |
+| লগইনে "operation-not-allowed" | Authentication এ Email/Password Enable করুন |
+| "unauthorized-domain" | Authorized domains এ `ইউজারনেম.github.io` যোগ করুন |
+| অন্য ডিভাইসে ডাটা আসে না | ঐ ডিভাইসেও ধাপ ১–২ করেছেন কি? উপরে **☁ সিঙ্ক চালু** দেখায় কি? |
 
 ## মনে রাখবেন
-- Firebase `apiKey` গোপন নয়, কিন্তু **Rules ঠিক থাকলে** অন্য কেউ ডাটা পড়তে পারবে না। Rules পাবলিশ করতে ভুলবেন না।
-- স্টাফের পাসওয়ার্ডসহ সব ডাটা ক্লাউডে থাকে; শুধু Firebase লগইনকারীরা পড়তে পারে। তাই অচেনা কাউকে Firebase অ্যাকাউন্ট দেবেন না।
-- Firebase বিনামূল্যের (Spark) প্ল্যানে ১ GB স্টোরেজ ও মাসে ১০ GB ডাউনলোড মেলে। ছোট দোকানের জন্য যথেষ্ট; পণ্যের ছবি ছোট রাখুন।
-- বারকোড/QR ও ফন্টের জন্য ইন্টারনেট লাগে।
-- ডাটা ব্যাকআপ নিয়মিত নিন (সেটিংস → ব্যাকআপ)।
+- Rules এ ইমেইল না বসালে কেউই (আপনিও) ডাটা পড়তে পারবেন না; ভুল ইমেইল দিলে অন্য কেউ অ্যাকাউন্ট খুলেও ডাটা দেখতে পারবে না — এটাই নিরাপদ।
+- স্টাফের পাসওয়ার্ডসহ সব ডাটা ক্লাউডে থাকে; শুধু Rules এ থাকা ইমেইল পড়তে পারে।
+- বিনামূল্যের (Spark) প্ল্যানে ১ GB স্টোরেজ, মাসে ১০ GB ডাউনলোড — ছোট দোকানের জন্য যথেষ্ট। পণ্যের ছবি ছোট রাখুন।
+- নিয়মিত **সেটিংস → ব্যাকআপ** নিন।
