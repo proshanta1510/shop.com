@@ -20,3 +20,30 @@
 <div id="boot" style="display:none;position:fixed;left:0;right:0;top:0;background:#dc2626;color:#fff;padding:10px;text-align:center;z-index:99">⚠ অ্যাপ ঠিকমতো লোড হয়নি। <a href="check.html" style="color:#fff;font-weight:700">check.html</a> খুলে কারণ দেখুন (ফাইলগুলো একই ফোল্ডারে আছে কি, Ctrl+Shift+R)।</div>
 <script>setTimeout(function(){if(typeof login!=='function'||!document.getElementById('lg'))document.getElementById('boot').style.display='block'},2500)</script>
 </body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Firebase Web App</title>
+</head>
+<body>
+    <h1>Firebase Web Integration</h1>
+
+    <!-- Firebase SDK Scripts -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.x.x/firebase-app.js";
+
+      const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        appId: "YOUR_APP_ID"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      console.log("Firebase Connected Successfully!", app);
+    </script>
+</body>
+</html>
